@@ -4,6 +4,7 @@ import io from "socket.io-client";
 import GroupChat from "./Chat/GroupChat";
 import JoinGame from "./Players/JoinGame";
 import GameplayArea from "./GamePlayArea/GamePlayArea";
+import TopBar from "./TopBar/TopBar";
 import "./Game.css";
 
 const socket = io("http://localhost:5555", { transports: ["websocket"] });
@@ -24,7 +25,7 @@ export default function Game() {
     return (
         <div className="game-page">
             <div className="top-bar">
-                <JoinGame />
+                <TopBar />
             </div>
 
             <div className="game-container">

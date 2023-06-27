@@ -1,7 +1,10 @@
 "user client";
 import React, { useEffect, useState } from "react";
 import io from "socket.io-client";
+import "./JoinGame.css"
+
 const socket = io("http://localhost:5555", { transports: ["websocket"] });
+
 
 export default function JoinGame() {
 
@@ -31,9 +34,9 @@ export default function JoinGame() {
                 placeholder="Enter your name"
             />
             {socket.id ? (
-                <button onClick={handleAddPlayer}>Join Game</button>
+                <button className="button-join" onClick={handleAddPlayer}>Join Game</button>
             ) : (
-                <button onClick={handleRemovePlayer}>Leave Game</button>
+                <button className="button-leave" onClick={handleRemovePlayer}>Leave Game</button>
             )}
         </div>
     );

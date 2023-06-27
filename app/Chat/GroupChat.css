@@ -1,7 +1,6 @@
 .chat-container {
     width: 20vw;
     aspect-ratio: .7; 
-    border: 5px solid purple;
 }
 
 .chat-history-container {
@@ -10,6 +9,5 @@
     align-items: flex-start;
     overflow-y: scroll;
     height: 80%;
-    border: 1px solid purple;
     width: 100%;
 }

@@ -1,0 +1,8 @@
+.button-join, .button-leave {
+    background-color: aquamarine;
+    color: black !important;
+    margin-left: 2vw;
+    border-radius: 5px;
+    padding: 1px;
+    /* margin: 5px; */
+}
