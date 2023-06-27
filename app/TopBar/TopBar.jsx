@@ -10,7 +10,6 @@ export default function () {
     return (
         <div className="top-bar-container">
             <span className='glowing-txt'>U<span className='faulty-letter'>N</span>STA<span className='faulty-letter'>B</span>LE DEVELOPER</span>
-            <JoinGame />
         </div>
     );
 }

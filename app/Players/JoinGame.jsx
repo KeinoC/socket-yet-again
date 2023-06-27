@@ -1,7 +1,8 @@
 "user client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import io from "socket.io-client";
 import "./JoinGame.css"
+import { PlayerContext } from "../StateManagement/PlayerProvider"
 
 const socket = io("http://localhost:5555", { transports: ["websocket"] });
 
@@ -9,14 +10,16 @@ const socket = io("http://localhost:5555", { transports: ["websocket"] });
 export default function JoinGame() {
 
     const [playerName, setPlayerName] = useState("");
+    const { player, setPlayer} = useContext(PlayerContext)
+
+    console.log(player)
 
     const handleAddPlayer = () => {
         const player = {
-            id: socket.id,
+            id: player?.playerId,
             name: playerName,
             cards: [],
         };
-        console.log(player.name);
         socket.emit("addPlayer", player);
     };
 
@@ -34,7 +37,7 @@ export default function JoinGame() {
                 onChange={(e) => setPlayerName(e.target.value)}
                 placeholder="Enter your name"
             />
-            {socket.id ? (
+            {player ? (
                 <button className="button-join" onClick={handleAddPlayer}>Join Game</button>
             ) : (
                 <button className="button-leave" onClick={handleRemovePlayer}>Leave Game</button>

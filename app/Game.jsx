@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import io from "socket.io-client";
 import GroupChat from "./Chat/GroupChat";
+import Seats from "./Players/Seats";
 import JoinGame from "./Players/JoinGame";
 import GameplayArea from "./GamePlayArea/GamePlayArea";
 import TopBar from "./TopBar/TopBar";
@@ -30,9 +31,10 @@ export default function Game() {
 
             <div className="game-container">
             <div className="left-bar">Left Bar</div>
-            <div className="game-area"><GameplayArea /> </div>
+<GameplayArea />
 
             <div className="right-bar">
+                <Seats />
                 <GroupChat />
             </div>
             </div>
