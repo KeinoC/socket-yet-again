@@ -1,4 +1,8 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {}
+const next = require('next')
+const app = next({
+  dir: './',
+  proxy: {
+    '/api': 'http://localhost:5555',
+  },
+})
 
-module.exports = nextConfig
