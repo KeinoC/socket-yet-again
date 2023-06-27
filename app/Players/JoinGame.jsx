@@ -16,6 +16,7 @@ export default function JoinGame() {
             name: playerName,
             cards: [],
         };
+        console.log(player.name);
         socket.emit("addPlayer", player);
     };
 
