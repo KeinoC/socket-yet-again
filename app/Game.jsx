@@ -1,12 +1,15 @@
-'user client'
+"user client";
 import React, { useEffect, useState } from "react";
 import io from "socket.io-client";
+import GroupChat from "./Chat/GroupChat";
+import JoinGame from "./Players/JoinGame";
+import GameplayArea from "./GamePlayArea/GamePlayArea";
+import "./Game.css";
 
 const socket = io("http://localhost:5555", { transports: ["websocket"] });
 
 export default function Game() {
     const [gameState, setGameState] = useState(null);
-    const [playerName, setPlayerName] = useState("");
 
     useEffect(() => {
         socket.on("updateGameState", (updatedGameState) => {
@@ -18,48 +21,20 @@ export default function Game() {
         };
     }, []);
 
-    const handleAddPlayer = () => {
-        const player = {
-            id: socket.id,
-            name: playerName,
-            cards: [{ name: "Card 1" }, { name: "Card 2" }],
-        };
-        socket.emit("addPlayer", player);
-    };
-
-    const handleRemovePlayer = () => {
-        const playerId = socket.id;
-        socket.emit("removePlayer", playerId);
-    };
-
     return (
-        <div>
-            <input
-                type="text"
-                value={playerName}
-                onChange={(e) => setPlayerName(e.target.value)}
-                placeholder="Enter your name"
-            />
-            <button onClick={handleAddPlayer}>Join Game</button>
-            <button onClick={handleRemovePlayer}>Leave Game</button>
+        <div className="game-page">
+            <div className="top-bar">
+                <JoinGame />
+            </div>
 
-            {gameState && (
-                <div>
-                    <h2>Game State:</h2>
-                    <ul>
-                        {gameState.players.map((player) => (
-                            <li key={player.id}>
-                                Player: {player.name}
-                                <ul>
-                                    {player.cards.map((card, index) => (
-                                        <li key={index}>Card: {card.name}</li>
-                                    ))}
-                                </ul>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            )}
+            <div className="game-container">
+            <div className="left-bar">Left Bar</div>
+            <div className="game-area"><GameplayArea /> </div>
+
+            <div className="right-bar">
+                <GroupChat />
+            </div>
+            </div>
         </div>
     );
 }

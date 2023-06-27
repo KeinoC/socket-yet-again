@@ -6,13 +6,14 @@ const app = express();
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
     cors: {
-        origin: "http://localhost:3000",
+        origin: "http://localhost:3000, http://localhost:3001, http://localhost:3002",
         methods: ["GET", "POST", "OPTIONS"],
     },
 });
 
 let gameState = {
     players: [],
+    chatMessages: [],
 };
 
 io.on("connection", (socket) => {
@@ -37,6 +38,12 @@ io.on("connection", (socket) => {
             (player) => player.id !== playerId
         );
         io.emit("updateGameState", gameState);
+    });
+
+    socket.on("chatMessage", (message) => {
+        gameState.chatMessages.push(message);
+        console.log("message hit server");
+        io.emit("updateChatMessages", gameState.chatMessages);
     });
 });
 

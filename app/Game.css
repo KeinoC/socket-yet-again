@@ -1,0 +1,32 @@
+.game-page {
+    padding-top: 5vh;
+    padding-bottom:5vh;
+    border: 5px solid salmon;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.game-container {
+    border: 5px solid blue;
+    display: flex;
+    flex-direction: row;
+    border: 5px solid green;
+    width: 100vw;
+    aspect-ratio: 1.5;
+}
+
+.left-bar {
+    width: 10vw;
+    border: 5px solid blue;
+}
+
+.right-bar {
+    border: 5px solid blue;
+}
+
+.game-area {
+    border: 5px solid orange;
+    width: 100%;
+}
